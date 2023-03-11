@@ -1,0 +1,22 @@
+{
+    "name": "eikonproject/paginator",
+    "description": "PHP package enabling basic metadata and pagination on PHP based websites.",
+    "type": "library",
+    "license": "GNU General Public License v3.0",
+    "autoload": {
+        "psr-4": {
+            "EikonProject\\Paginator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Davide Lanza",
+            "email": "davide.lanza@eikonproject.org"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "php-censor/phpdoc-checker": "^3.1"
+    }
+}

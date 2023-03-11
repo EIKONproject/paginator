@@ -1,0 +1,7 @@
+**/.vscode
+
+composer.lock
+**/vendor
+.coverage
+.phpdoc
+.php-cs-fixer.cache
