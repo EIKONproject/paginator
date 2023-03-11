@@ -1,0 +1,35 @@
+name: 🔎Check PHP Code
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "check-php"
+  check-php:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥Check out the repository
+        uses: actions/checkout@v3
+
+      - name: 🛠️Install package via composer
+        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest install --dev
+
+      - name: 🔎Check code with cytopia/phplint
+        run: docker run --rm -v $(pwd)/src:/data cytopia/phplint
+
+      - name: 🔎Check code with cytopia/php-cs-fixer
+        run: docker run --rm -v $(pwd)/src:/data cytopia/php-cs-fixer fix --dry-run --diff .
+
+      - name: 📖Check documentation with phpdoc-checker
+        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest ./vendor/bin/phpdoc-checker -d src
+
+      - name: 🪖Test with phpunit
+        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest ./vendor/bin/phpunit tests
