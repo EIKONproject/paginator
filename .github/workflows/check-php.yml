@@ -19,8 +19,32 @@ jobs:
       - name: 📥Check out the repository
         uses: actions/checkout@v3
 
+      - name: 🛠️Install PHP 7.4
+        # We cannot install the PHP7.4 packages using the default system
+        # repository of Ubuntu 22.04 because the default version of PHP
+        # present to install in this Ubuntu version is PHP 8.1.
+        # To get the older version, add the PPA repository called Ondrej.
+        # https://www.how2shout.com/linux/how-to-install-php-7-4-on-ubuntu-22-04-lts-jammy-linux/
+        run: |
+          sudo apt-get update -y
+          sudo apt install software-properties-common -y
+          sudo add-apt-repository ppa:ondrej/php -y
+          sudo apt-get update -y
+          sudo apt-get install php7.4 -y
+
+      - name: 🛠️Install composer
+        # https://linuxhint.com/install-and-use-php-composer-ubuntu-22-04/
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install php7.4-cli unzip -y
+          curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+          HASH=`curl -sS https://composer.github.io/installer.sig`
+          php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+          sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          composer --help
+
       - name: 🛠️Install package via composer
-        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest install --dev
+        run: composer install --dev
 
       - name: 🔎Check code with cytopia/phplint
         run: docker run --rm -v $(pwd)/src:/data cytopia/phplint
@@ -29,7 +53,7 @@ jobs:
         run: docker run --rm -v $(pwd)/src:/data cytopia/php-cs-fixer fix --dry-run --diff .
 
       - name: 📖Check documentation with phpdoc-checker
-        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest ./vendor/bin/phpdoc-checker -d src
+        run: ./vendor/bin/phpdoc-checker -d src
 
       - name: 🪖Test with phpunit
-        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest ./vendor/bin/phpunit tests
+        run: XDEBUG_MODE=coverage ./vendor/bin/phpunit tests --coverage-xml .coverage.xml
