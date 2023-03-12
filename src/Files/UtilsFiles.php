@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace EikonPaginator;
+namespace EikonPaginator\Files;
 
 use Exception;
 
@@ -25,9 +25,9 @@ use Exception;
  * @author Davide Lanza <davide.lanza@eikonproject.org>
  */
 function load_json(
-    $directory,
-    $filename,
-    $check_fields = array()
+    string $directory,
+    string $filename,
+    array $check_fields = array()
 ) {
     // Read json file
     $path = $directory . '/' . $filename;
