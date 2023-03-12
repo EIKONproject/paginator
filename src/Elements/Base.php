@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Base classes for Paginator elements
+ * Base classes for paginator elements
  *
- * @package Paginator
+ * @package EikonPaginator
  */
 
 declare(strict_types=1);
 
-namespace EikonProject\Paginator;
+namespace EikonPaginator\Elements;
 
 /**
  * Base element.
@@ -132,10 +132,10 @@ class Page extends BaseEntity
      * Return the metadata fields of the page.
      *
      * Every page metadata inherit all the metadata of the BaseEntity plus:
-     * - date: page publication date
-     * - domain_url: domain URL of the website (e.g. www.domain.com)
-     * - relative_url: relative URL if the page (e.g. /relative/url/to/page/)
-     * - cover_img_src: the page cover image src (e.g. www.domain.com/some/image.jpg)
+     * - `date`: page publication date
+     * - `domain_url`: domain URL of the website (e.g. `"www.domain.com"`)
+     * - `relative_url`: relative URL if the page (e.g. `"/relative/url/to/page/"`)
+     * - `cover_img_src`: the page cover image src (e.g. `"www.domain.com/some/image.jpg"`)
      *
      * @return array Names of the metadata fields of the element.
      *

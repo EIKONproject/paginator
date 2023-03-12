@@ -3,12 +3,12 @@
 /**
  * Useful functions for file management
  *
- * @package Paginator
+ * @package EikonPaginator
  */
 
 declare(strict_types=1);
 
-namespace EikonProject\Paginator;
+namespace EikonPaginator;
 
 use Exception;
 

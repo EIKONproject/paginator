@@ -1,11 +1,11 @@
 {
-    "name": "eikonproject/paginator",
+    "name": "eikonproject/eikon-paginator",
     "description": "PHP package enabling basic metadata and pagination on PHP based websites.",
     "type": "library",
     "license": "GNU General Public License v3.0",
     "autoload": {
         "psr-4": {
-            "EikonProject\\Paginator\\": "src/"
+            "EikonPaginator\\": "src/"
         }
     },
     "authors": [

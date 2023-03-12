@@ -21,7 +21,7 @@ final class FileUtilsTest extends TestCase
         $expected = array("field_1" => "value_1");
         // Check actual output
         $check_fields = array("field_1");
-        $output = EikonProject\Paginator\load_json($temp_dir, $temp_fname, $check_fields);
+        $output = EikonPaginator\load_json($temp_dir, $temp_fname, $check_fields);
         $this->assertSame($expected, $output);
         // Remove the temporary file
         fclose($temp);
@@ -39,7 +39,7 @@ final class FileUtilsTest extends TestCase
         // Check for wrong fields loaded
         $this->expectException(Exception::class);
         $check_fields = array("field_2");
-        EikonProject\Paginator\load_json($temp_dir, $temp_fname, $check_fields);
+        EikonPaginator\load_json($temp_dir, $temp_fname, $check_fields);
         // Remove the temporary file
         fclose($temp);
     }
@@ -56,7 +56,7 @@ final class FileUtilsTest extends TestCase
         // Check for right and wrong fields loaded
         $this->expectException(Exception::class);
         $check_fields = array("field_1", "field_2");
-        EikonProject\Paginator\load_json($temp_dir, $temp_fname, $check_fields);
+        EikonPaginator\load_json($temp_dir, $temp_fname, $check_fields);
         // Remove the temporary file
         fclose($temp);
     }
