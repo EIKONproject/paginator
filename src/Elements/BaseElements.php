@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base classes for paginator elements
+ * Basic classes for paginator elements
  *
  * @package EikonPaginator
  */
@@ -9,6 +9,8 @@
 declare(strict_types=1);
 
 namespace EikonPaginator\Elements;
+
+use EikonPaginator\Utils;
 
 /**
  * Base element.
@@ -28,7 +30,7 @@ abstract class AbstractElement
      *
      * @author Davide Lanza <davide.lanza@eikonproject.org>
      */
-    public function __construct($directory)
+    public function __construct(string $directory)
     {
         $this->directory = $directory;
     }
@@ -68,7 +70,7 @@ abstract class AbstractElement
      */
     public function metadata(): mixed
     {
-        return load_json($this->directory, "metadata.json", $this->metadata_fields());
+        return Utils\load_json($this->directory, "metadata.json", $this->metadata_fields());
     }
 }
 
