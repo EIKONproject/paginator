@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace EikonPaginator\Elements;
 
-use EikonPaginator\Utils;
+use EikonPaginator\Files;
 
 /**
  * Base element.
@@ -21,7 +21,7 @@ use EikonPaginator\Utils;
  */
 abstract class AbstractElement
 {
-    protected $directory;
+    public static $directory;
 
     /**
      * Construct an element with an associated directory
@@ -39,9 +39,8 @@ abstract class AbstractElement
      * Return the metadata fields of the element.
      *
      * By default, every element metadata should contain at least:
-     * - shortcode: a shortcode identifier for the element,
-     * - name: the display name,
-     * - description: a descriptive text of the element.
+     * - `name`: the display name,
+     * - `description`: a descriptive text of the element.
      *
      * @return array Names of the metadata fields of the element
      *
@@ -50,7 +49,6 @@ abstract class AbstractElement
     public function metadata_fields(): array
     {
         return array(
-            "shortcode",
             "name",
             "description",
         );
@@ -68,9 +66,11 @@ abstract class AbstractElement
      *
      * @author Davide Lanza <davide.lanza@eikonproject.org>
      */
-    public function metadata(): mixed
+    public function metadata()
     {
-        return Utils\load_json($this->directory, "metadata.json", $this->metadata_fields());
+        $metadata = Files\load_json($this->directory . "/metadata.json", $this->metadata_fields());
+        $metadata["shortcode"] = basename($this->directory);
+        return $metadata;
     }
 }
 
@@ -148,7 +148,7 @@ class Page extends BaseEntity
         $fields = parent::metadata_fields();
         $fields = array_merge($fields, array(
             "date",
-            "url",
+            "domain_url",
             "relative_url",
             "cover_img_src",
         ));
