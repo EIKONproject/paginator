@@ -174,6 +174,11 @@ docker run -tti --rm -v $(pwd):/data cytopia/php-cs-fixer fix --dry-run --diff .
 docker run -tti --rm -v $(pwd):/data cytopia/php-cs-fixer fix .
 ```
 
+For code quality assessment, we use [`phpmd` (PHP mess detector)](https://phpmd.org/download/index.html), and it can be run via the composer docker image:
+```sh
+docker run -tti --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) composer:latest ./vendor/bin/phpmd . github cleancode,codesize,design,naming,unusedcode --exclude 'tests/*,vendor/*'
+```
+
 ## Testing
 
 For testing, we use [`phpunit` 9.6](https://docs.phpunit.de/en/9.6/), and it can be run via the composer docker image:

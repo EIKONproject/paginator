@@ -52,6 +52,9 @@ jobs:
       - name: 🔎Check code with cytopia/php-cs-fixer
         run: docker run --rm -v $(pwd)/src:/data cytopia/php-cs-fixer fix --dry-run --diff .
 
+      - name: 🔎Check code with PHP Mess Detector
+        run: ./vendor/bin/phpmd . github cleancode,codesize,design,naming,unusedcode --exclude 'tests/*,vendor/*'
+
       - name: 🪖Test with phpunit
         run: |
           sudo apt-get install php7.4-xdebug
