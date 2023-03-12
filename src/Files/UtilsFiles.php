@@ -29,9 +29,6 @@ function load_json(
 ) {
     // Read json file
     $string = file_get_contents($path);
-    if (!$string) {
-        throw new Exception("No file '$path' found");
-    }
     $json = json_decode($string, true);
     // Check fields
     foreach ($check_fields as $field) {
