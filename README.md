@@ -1,8 +1,14 @@
 <h1> <code>EikonProject\Paginator</code> PHP Package </h1>
 
-[![LICENSE Badge](https://img.shields.io/badge/License-GPL3.0-green.svg)](https://opensource.org/license/gpl-3-0/)
+[![Check Package](https://github.com/EIKONproject/paginator/actions/workflows/check-package.yml/badge.svg?branch=main)](https://github.com/EIKONproject/paginator/actions/workflows/check-package.yml)
+[![LICENSE Badge](https://img.shields.io/badge/License-GPL3.0-blue.svg)](https://opensource.org/license/gpl-3-0/)
 
 PHP package enabling basic metadata and pagination on PHP based websites
+
+- [Documentation](https://eikonproject.github.io/paginator/)
+- [Coverage report](https://eikonproject.github.io/paginator/coverage/)
+
+<h2> Contents </h2>
 
 - [Concept](#concept)
   - [Pages and data](#pages-and-data)

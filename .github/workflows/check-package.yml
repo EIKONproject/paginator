@@ -1,4 +1,4 @@
-name: 🔎Check PHP Code
+name: Check Package
 
 # Controls when the workflow will run
 on:
@@ -12,8 +12,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "check-php"
-  check-php:
+  linting:
+    name: "Linting, Testing and Docs Generation"
     runs-on: ubuntu-latest
     steps:
       - name: 📥Check out the repository
@@ -52,8 +52,70 @@ jobs:
       - name: 🔎Check code with cytopia/php-cs-fixer
         run: docker run --rm -v $(pwd)/src:/data cytopia/php-cs-fixer fix --dry-run --diff .
 
+      - name: 🪖Test with phpunit
+        run: |
+          sudo apt-get install php7.4-xdebug
+          XDEBUG_MODE=coverage ./vendor/bin/phpunit tests --coverage-filter src --coverage-text --coverage-html .coverage/html --coverage-clover .coverage/clover.xml
+
+      - name: 📤Upload coverage HTML report to artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: coverage-html
+          path: .coverage/html/
+          if-no-files-found: error
+          retention-days: 1
+
       - name: 📖Check documentation with phpdoc-checker
         run: ./vendor/bin/phpdoc-checker -d src
 
-      - name: 🪖Test with phpunit
-        run: XDEBUG_MODE=coverage ./vendor/bin/phpunit tests --coverage-xml .coverage.xml
+      - name: 📖Generate documentation with phpdoc
+        run: docker run --rm -v $(pwd):$(pwd) -w $(pwd) --user $(id -u):$(id -g) phpdoc/phpdoc:3 -d src
+
+      - name: 📤Upload phpdoc HTML documentation to artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: phpdoc-html
+          path: .phpdoc/build/
+          if-no-files-found: error
+          retention-days: 1
+
+  pages:
+    name: "Deploy to GitHub Pages"
+    if: github.ref == 'refs/heads/main' # runs only on main branch
+    runs-on: ubuntu-latest
+    needs: linting
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+
+    steps:
+      - name: 📥Download coverage HTML report
+        uses: actions/download-artifact@master
+        with:
+          name: coverage-html
+          path: ./coverage
+
+      - name: 📥Download phpdoc HTML documentation
+        uses: actions/download-artifact@master
+        with:
+          name: phpdoc-html
+          path: .
+
+      - name: 🛠️Configure GitHub Pages
+        # Build and deployment of GitHub pages has to be set to "Source: GitHub Actions"
+        # in the repository "Pages" settings to make this work.
+        # https://i.stack.imgur.com/5o6Zj.png
+        uses: actions/configure-pages@v1
+
+      - name: 🚀Upload artifacts to GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+
+      - name: 🚀Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
