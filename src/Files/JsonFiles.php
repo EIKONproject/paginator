@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Useful functions for file management
+ * Useful functions for JSON files management
  *
  * @package EikonPaginator
  */

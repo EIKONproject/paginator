@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-require __DIR__ . "/../../src/Files/UtilsFiles.php";
+require __DIR__ . "/../../src/Files/JsonFiles.php";
 
 use PHPUnit\Framework\TestCase;
 use EikonPaginator\Files;
 
-final class UtilsFilesTest extends TestCase
+final class JsonFilesTest extends TestCase
 {
     public function test_JsonCheck_RightFields(): void
     {
