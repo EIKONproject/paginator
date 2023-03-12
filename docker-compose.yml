@@ -1,0 +1,15 @@
+version: '3.8'
+
+volumes:
+  cache:
+
+
+services:
+  test-apache-server:
+    image: "ghcr.io/eikonproject/apache_dev_server:main"
+    user: "${UID}:${GID}"
+    volumes:
+      - ./test-website.org/htdocs:/home/htdocs
+      - ./src:/home/Packages/Paginator
+    ports:
+      - 8999:80

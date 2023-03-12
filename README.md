@@ -10,6 +10,7 @@ PHP package enabling basic metadata and pagination on PHP based websites
 
 <h2> Contents </h2>
 
+- [Test website](#test-website)
 - [Concept](#concept)
   - [Pages and data](#pages-and-data)
   - [Folder structure, `metadata.json` and `index.php` files](#folder-structure-metadatajson-and-indexphp-files)
@@ -19,6 +20,15 @@ PHP package enabling basic metadata and pagination on PHP based websites
   - [Testing](#testing)
   - [Coding standards](#coding-standards)
   - [Documentation](#documentation)
+
+# Test website
+
+To see how the paginator runs on a local test website, run:
+```sh
+env UID=${UID} GID=${GID} docker compose up
+```
+
+The website will be available at `localhost:8999`.
 
 # Concept
 
