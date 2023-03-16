@@ -154,4 +154,25 @@ class Page extends BaseEntity
         ));
         return $fields;
     }
+
+    /**
+     * Return the metadata of the element
+     *
+     * Every element has a `metadata.json` file in the associated directory.
+     * This method loads and returns that JSON.
+     *
+     * `"date"` values in the metadata are parsed as timestamps.
+     *
+     * @return mixed The loaded json metadata file in appropriate PHP type.
+     *
+     * @see load_json()
+     *
+     * @author Davide Lanza <davide.lanza@eikonproject.org>
+     */
+    public function metadata()
+    {
+        $metadata = parent::metadata();
+        $metadata["date"] = strtotime($metadata["date"]);
+        return $metadata;
+    }
 }
