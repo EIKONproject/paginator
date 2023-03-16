@@ -98,7 +98,7 @@ function dirtree(
  */
 class SetSpider
 {
-    protected Set $set;
+    public Set $set;
     protected string $entity_class;
     protected CachedJson $cache;
 
@@ -172,6 +172,8 @@ class SetSpider
                 $spider_array[$cat_metadata["shortcode"]]["entities"][$entity_metadata["shortcode"]] = $entity_metadata;
             }
         }
+        // Sort categories by key (alphabetically)
+        ksort($spider_array);
         return $spider_array;
     }
 
