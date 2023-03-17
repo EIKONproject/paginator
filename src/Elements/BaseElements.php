@@ -158,10 +158,8 @@ class Page extends BaseEntity
     /**
      * Return the metadata of the element
      *
-     * Every element has a `metadata.json` file in the associated directory.
-     * This method loads and returns that JSON.
-     *
-     * `"date"` values in the metadata are parsed as timestamps.
+     * Every page metadata parse metadata like BaseEntity plus:
+     * - `date` values in the metadata are parsed as timestamps.
      *
      * @return mixed The loaded json metadata file in appropriate PHP type.
      *
