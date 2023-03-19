@@ -45,8 +45,11 @@ function random_entities(array $set_array)
 function _sort(array $array, string $key)
 {
     usort($array, function ($val_a, $val_b) use ($key) { // Anonymous function:
+        // Cast values to string by printing them
+        $str_a = print_r($val_a[$key], true);
+        $str_b = print_r($val_b[$key], true);
         // Compare numbers or strings non-case-sensitive
-        return strcmp(strtoupper($val_a[$key]), strtoupper($val_b[$key]));
+        return strcmp(strtoupper($str_a), strtoupper($str_b));
     });
     return $array;
 }
