@@ -9,3 +9,5 @@
  */
 
 require_once dirname(__FILE__) . '/BaseElements.php';
+require_once dirname(__FILE__) . '/DataElements.php';
+require_once dirname(__FILE__) . '/PagesElements.php';
