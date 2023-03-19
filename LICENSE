@@ -620,9 +620,8 @@ copy of the Program in return for a fee.
 
                      END OF TERMS AND CONDITIONS
 
-
-#TODO: <description>
-<program> Copyright (C) <year> <name of author> 
+PHP package enabling basic metadata and pagination on PHP based websites
+Paginator Copyright (C) 2023 EIKON Project
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
