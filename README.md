@@ -41,7 +41,6 @@ The paginator works gathering and processing metadata from two basic **entities*
 
 Each entity is grouped by a **category** and each category belongs to a **set**. In general, a website can be summed up by a set of pages sets and data sets:
 
-
 ```mermaid
 flowchart TD
     subgraph pages
@@ -150,7 +149,6 @@ htdocs/
 As we can see, every set, category and entity has associated a specific `metadata.json` file containing the metadata needed by that specific PHP class.
 
 Pages have an additional `index.php`, which is the page associated to the page entity which is available on the frontend.
-
 
 
 # Development

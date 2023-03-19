@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace EikonPaginator\Elements;
 
-
 /**
  * Person element
  * @author Davide Lanza <davide.lanza@eikonproject.org>

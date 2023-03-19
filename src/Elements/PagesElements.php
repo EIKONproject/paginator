@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace EikonPaginator\Elements;
 
-
 /**
  * Post element
  * @author Davide Lanza <davide.lanza@eikonproject.org>
@@ -36,8 +35,6 @@ class Post extends Page
         return $fields;
     }
 }
-
-
 
 /**
  * Interview element

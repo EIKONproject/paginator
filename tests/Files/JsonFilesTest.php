@@ -34,7 +34,6 @@ final class JsonFilesTest extends TestCase
         Files\check_fields_json($json, $check_fields);
     }
 
-
     public function test_JsonLoad_Success(): void
     {
         // Prepare temporary input file

@@ -32,7 +32,6 @@ function random_categories(array $set_array)
     return $set_array;
 }
 
-
 function random_entities(array $set_array)
 {
     foreach ($set_array as $category => $category_metadata) {
@@ -60,7 +59,6 @@ function _reverse_sort(array $array, string $key)
     });
     return $array;
 }
-
 
 function sort_categories(array $set_array, string $key)
 {

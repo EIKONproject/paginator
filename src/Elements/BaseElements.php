@@ -96,7 +96,6 @@ class Category extends AbstractElement
 {
 }
 
-
 /**
  * Abstract base entity element
  *
@@ -108,7 +107,6 @@ abstract class BaseEntity extends AbstractElement
 {
 }
 
-
 /**
  * Datum element
  *
@@ -119,7 +117,6 @@ abstract class BaseEntity extends AbstractElement
 class Datum extends BaseEntity
 {
 }
-
 
 /**
  * Page element

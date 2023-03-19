@@ -34,7 +34,6 @@ function check_fields_json($json, array $check_fields = array()): bool
     return true;
 }
 
-
 /**
  * Load a JSON file
  *
@@ -58,7 +57,6 @@ function load_json(
     // Return loaded json
     return $json;
 }
-
 
 /**
  * Store a JSON-like object to a JSON file

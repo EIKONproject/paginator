@@ -31,7 +31,6 @@ function _checkbox(
     return $html;
 }
 
-
 function category_checkboxes(
     string $html_id_prefix,
     array $set_array,
@@ -49,7 +48,6 @@ function category_checkboxes(
     $html .= '</div>';
     return $html;
 }
-
 
 function entity_checkboxes(
     string $html_id_prefix,

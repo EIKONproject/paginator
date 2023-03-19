@@ -113,7 +113,6 @@ class CachedFile
     }
 }
 
-
 /**
  * Class to manage cached JSON-based files.
  *
