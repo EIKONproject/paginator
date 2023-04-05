@@ -11,6 +11,34 @@ declare(strict_types=1);
 namespace EikonPaginator\Elements;
 
 /**
+ * Place element
+ * @author Davide Lanza <davide.lanza@eikonproject.org>
+ */
+class Place extends Datum
+{
+    /**
+     * Return the metadata fields of the place.
+     *
+     * Every place metadata inherit all the metadata of the `Datum` plus:
+     * - `city`: city in which the place is
+     * - `country_alpha_2`: ISO 3166-1 alpha-2 code of the country in which the place is
+     *
+     * @return array Names of the metadata fields of the element.
+     *
+     * @author Davide Lanza <davide.lanza@eikonproject.org>
+     */
+    public function metadata_fields(): array
+    {
+        $fields = parent::metadata_fields();
+        $fields = array_merge($fields, array(
+            "city",
+            "country_alpha_2",
+        ));
+        return $fields;
+    }
+}
+
+/**
  * Person element
  * @author Davide Lanza <davide.lanza@eikonproject.org>
  */
